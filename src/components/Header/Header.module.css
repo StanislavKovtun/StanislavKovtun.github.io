@@ -1,0 +1,9 @@
+.header {
+    /* Задаем псевдоним для блока */
+    grid-area: h;
+    background-color: gray;
+  }
+  
+  .header img {
+    width: 20px;
+  }

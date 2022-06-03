@@ -21,27 +21,3 @@
   column-gap: 1px;
   row-gap: 1px;
 }
-
-.header {
-  /* Задаем псевдоним для блока */
-  grid-area: h;
-  background-color: gray;
-}
-
-.header img {
-  width: 20px;
-}
-
-.nav {
-  grid-area: n;
-  background-color: blueviolet;
-}
-
-.content {
-  grid-area: c;
-  background-color: aqua;
-}
-
-.content__photo {
-  /* width: 600px; */
-}
