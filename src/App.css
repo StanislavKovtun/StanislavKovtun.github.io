@@ -6,18 +6,23 @@
   /* Используем grid для структурирования блоков */
   display: grid;
   /* Задаем схему размещения блоков */
-  grid-template-areas: 
-  "h h"
-  "n c";
+  grid-template-areas:
+    "h h"
+    "n c";
 
   /* Первая строка занимает 60 px, остальное - фракция */
   grid-template-rows: 40px 1fr;
   /* Одна колонка занимает 2 фракции, сторая - 10 */
-  grid-template-columns: 2rf 10rf;
+  grid-template-columns: 2fr 10fr;
   /* Расстояние между элементами */
   /* grid-column-gap: 10px; */
   /* grid-row-gap: 1em; */
   /* grid-gap: 2px; */
   column-gap: 1px;
   row-gap: 1px;
+}
+
+.app-wrapper-content {
+  grid-area: c;
+  background-color: aqua;
 }

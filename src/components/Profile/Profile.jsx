@@ -7,7 +7,7 @@ import s from './Profile.module.css';
 
 const Profile = () => {
     return (
-        <div className={s.content}>
+        <div>
             <div className={s.photo}>
                 <img src='https://imageio.forbes.com/specials-images/imageserve/5c0aa5554bbe6f0f2aa19644/0x0.jpg?format=jpg&width=1200' alt='moto'></img>
                 {/* <img src='https://lightningmotorcycle.com/wp-content/uploads/2019/09/strike_banner.jpg'></img> */}
