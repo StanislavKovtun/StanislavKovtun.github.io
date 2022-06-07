@@ -10,7 +10,7 @@ let store = {
             ],
             newPostText: 'new text for new post'
         },
-    
+
         dialogsPage: {
             messages: [
                 { id: 1, message: 'Good morning!' },
@@ -25,17 +25,22 @@ let store = {
                 { id: 5, name: 'Vitalik' }
             ]
         },
-    
+
         sidebar: {
-    
+
         }
-    },
-    getState() {
-        return this._state;
     },
     _callSubscriber() {
         // console.log('state was changed');
     },
+
+    subscribe(observer) {
+        this._callSubscriber = observer;//наблюдатель
+    },
+    getState() {
+        return this._state;
+    },
+
     addPost() {
         // debugger;
         let newPost = {
@@ -43,18 +48,26 @@ let store = {
             message: this._state.profilePage.newPostText,
             likesCount: 12
         };
-        
+
         this._state.profilePage.posts.push(newPost);
         this._state.profilePage.newPostText = '';
         this._callSubscriber(this._state);
     },
-    updateNewPostText(newText) {
 
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber(this._state);
-    },
-    subscribe(observer) {
-        this._callSubscriber = observer;//наблюдатель
+    dispatch(action) { //{type: 'ADD-POST'}
+        if (action.type === 'ADD-POST') {
+            let newPost = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                likesCount: 12
+            };
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state);
+        }
     }
 };
 
