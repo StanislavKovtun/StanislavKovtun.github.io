@@ -4,18 +4,33 @@ import s from './Dialogs.module.css'
 // import { NavLink } from "react-router-dom";
 import DialogItem from './DialogItems/DialogsItem';
 import Message from './Messages/Messages';
+import store from './../../redux/state';
+import { updateNewMessageBodyCreator, sendMessageCreator } from './../../redux/state';
 
 const Dialogs = (props) => {
 
-    let dialogsElements = props.state.dialogs.map((d) => <DialogItem key={d.id} name={d.name} id={d.id} />);
-    let messagesElements = props.state.messages.map((m) => <Message key={m.id} message={m.message} id={m.id} />);
+    let state = props.store.getState().dialogsPage;
 
+    let dialogsElements = state.dialogs.map((d) => <DialogItem key={d.id} name={d.name} id={d.id} />);
+    let messagesElements = state.messages.map((m) => <Message key={m.id} message={m.message} id={m.id} />);
     let newMessageElement = React.createRef();
 
-    let addMessage = () => {
-        let text = newMessageElement.current.value;
-        alert(text);
+    let newMessageBody = state.newMessageBody;
+    
+    let onSendMessageClick = () => {
+        props.store.dispatch(sendMessageCreator());
     };
+
+    let onNewMessageChange = (e) => {
+        let body = e.target.value;
+        props.store.dispatch(updateNewMessageBodyCreator(body));
+    };
+
+    let addMessage = () => {
+        debugger;
+        let text = newMessageElement.current.value;
+    };
+    
 
     return (
         <div className={s.dialogs}>
@@ -25,15 +40,18 @@ const Dialogs = (props) => {
             </div>
 
             <div className={s.messages}>
-                {messagesElements}
-            </div>
-
-            <div>
-                <textarea ref={newMessageElement} name="" id="" cols="40" rows="5"></textarea>
-            </div>
-
-            <div>
-                <button onClick={addMessage}>Add</button>
+                <div>{messagesElements}
+                    <div>
+                        <div>
+                            <textarea value={newMessageBody}
+                             onChange = {onNewMessageChange}
+                             placeholder='Enter your message...'></textarea>
+                        </div>
+                        <div>
+                            <button onClick={ onSendMessageClick }>Send</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>

@@ -2,6 +2,13 @@
     padding: 10px;
 }
 
-/* .photo {
-    max-height: 300px;
-} */
+.moto {
+    background-color: white;
+    text-align: center;
+    max-height: 200px;
+}
+
+.moto img {
+    max-height: 200px;
+    /* max-height:100%; */
+}

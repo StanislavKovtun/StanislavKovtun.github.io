@@ -10,10 +10,10 @@
     "h h"
     "n c";
 
-  /* Первая строка занимает 60 px, остальное - фракция */
+  /* Первая строка занимает 40 px, остальное - фракция */
   grid-template-rows: 40px 1fr;
   /* Одна колонка занимает 2 фракции, сторая - 10 */
-  grid-template-columns: 2fr 10fr;
+  grid-template-columns: 2fr 20fr;
   /* Расстояние между элементами */
   /* grid-column-gap: 10px; */
   /* grid-row-gap: 1em; */

@@ -4,7 +4,7 @@ import React from 'react';
 const Settings = (props) => {
     return (
         <div>
-            Settings
+            This is a Settings
         </div>
     )
 }

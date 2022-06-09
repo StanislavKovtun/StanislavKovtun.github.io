@@ -5,5 +5,8 @@
   }
   
   .header img {
+    /* position: absolute;
+    bottom: 0px;
+    top: 0px; */
     width: 20px;
   }

@@ -4,7 +4,7 @@ import React from 'react';
 const Music = (props) => {
     return (
         <div>
-            Music
+            This is a Music
         </div>
     )
 }
