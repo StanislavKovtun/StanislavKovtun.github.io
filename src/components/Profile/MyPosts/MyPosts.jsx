@@ -9,24 +9,24 @@ const MyPosts = (props) => {
     let postsElements = props.posts.map((p) => <Post key={p.id} message={p.message} likesCount={p.likesCount} id={p.id} />);
     let newPostElement = React.createRef();
 
-    let addPost = () => {
-        props.dispatch(addPostActionCreator());
-      };
+    let onAddPost = () => {
+        props.addPost();
+    };
 
     let onPostChange = () => {
+        debugger;
         let text = newPostElement.current.value;
-        let action = updateNewPostTextActionCreator(text);
-        props.dispatch(action);
+        let action = props.updateNewPostText(text);
     }
 
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
             <div>
-                <textarea onChange={onPostChange} ref={newPostElement} name="" id="" cols="40" rows="5" value={props.newPostText}></textarea>
+                <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}></textarea>
             </div>
             <div>
-                <button onClick={ addPost }>Add</button>
+                <button onClick={ onAddPost }>Add</button>
             </div>
             <div className={s.posts}>
                 {postsElements}
