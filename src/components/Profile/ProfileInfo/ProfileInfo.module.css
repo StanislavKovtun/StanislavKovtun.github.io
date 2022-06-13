@@ -5,11 +5,11 @@
 .moto {
     background-color: white;
     text-align: center;
-    max-height: 200px;
+    max-height: 300px;
 }
 
 .moto img {
     /* position: relative; */
-    max-height: 200px;
+    max-height: 300px;
     /* max-height: 100%; */
 }

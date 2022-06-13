@@ -9,7 +9,8 @@ const ProfileInfo = () => {
     return (
         <div>
             <div className={s.moto}>
-                <img src='https://imageio.forbes.com/specials-images/imageserve/5c0aa5554bbe6f0f2aa19644/0x0.jpg?format=jpg&width=1200' alt='moto'></img>
+                {/* <img src='https://imageio.forbes.com/specials-images/imageserve/5c0aa5554bbe6f0f2aa19644/0x0.jpg?format=jpg&width=1200' alt='moto'></img> */}
+                <img src='https://lightningmotorcycle.com/wp-content/uploads/2019/09/strike_banner.jpg' alt='moto'></img>
             </div>
             <div className={s.descriptionBlock}>
                 ava + description
