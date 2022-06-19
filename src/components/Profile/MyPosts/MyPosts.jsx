@@ -11,6 +11,7 @@ const MyPosts = (props) => {
 
     let onAddPost = () => {
         props.addPost();
+        // props.dispatch({type: 'ADD-POST'});
     };
 
     let onPostChange = () => {
