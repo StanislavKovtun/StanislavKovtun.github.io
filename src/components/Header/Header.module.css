@@ -12,3 +12,12 @@
     padding-left: 10px;
     padding-top: 10px;
   }
+
+  .loginBlock {
+    float: right;
+  }
+
+  .loginBlock a {
+    color: white;
+    text-decoration: none;
+   }
