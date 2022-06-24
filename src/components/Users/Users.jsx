@@ -2,6 +2,8 @@ import React from "react";
 import styles from './users.module.css';
 import userPhoto from '../../assets/images/user.png';
 import { NavLink } from "react-router-dom";
+// import * as axios from 'axios';
+import { usersAPI } from './../../api/api';
 
 let Users = (props) => {
     // debugger;
@@ -35,8 +37,41 @@ let Users = (props) => {
                     </div>
                     <div>
                         {u.followed
-                            ? <button onClick={() => { props.unfollow(u.id) }}>Unfollow</button>
-                            : <button onClick={() => { props.follow(u.id) }}>Follow</button>}
+                            ? <button onClick={() => {
+                                debugger
+                                // axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                                //     withCredentials: true,
+                                //     headers: {
+                                //         "API-KEY": "0f3afa76-4279-46a2-a53a-59a3b4453d5d"
+                                //     }
+                                // })
+                                usersAPI.unfollowUser(u.id)
+
+                                    .then(data => {
+                                        debugger
+                                        if (data.resultCode == 0) {
+                                            props.unfollow(u.id);//вызываем колбек только если успешно отписались на сервере
+                                        }
+                                    });
+
+                            }}>Unfollow</button>
+                            : <button onClick={() => {
+
+                                // axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+                                //     withCredentials: true,
+                                //     headers: {
+                                //         "API-KEY": "0f3afa76-4279-46a2-a53a-59a3b4453d5d"
+                                //     }
+                                // })
+                                usersAPI.followUser(u.id)
+
+                                    .then(data => {
+                                        if (data.resultCode == 0) {
+                                            props.follow(u.id);//вызываем колбек только если успешно подписались на сервере
+                                        }
+                                    });
+
+                            }}>Follow</button>}
                     </div>
                 </span>
                 <span>
