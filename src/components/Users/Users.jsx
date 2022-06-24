@@ -37,40 +37,27 @@ let Users = (props) => {
                     </div>
                     <div>
                         {u.followed
-                            ? <button onClick={() => {
+                            ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
                                 debugger
-                                // axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                //     withCredentials: true,
-                                //     headers: {
-                                //         "API-KEY": "0f3afa76-4279-46a2-a53a-59a3b4453d5d"
-                                //     }
-                                // })
+                                props.toggleIsFollowingProgress(true, u.id);
                                 usersAPI.unfollowUser(u.id)
-
                                     .then(data => {
                                         debugger
                                         if (data.resultCode == 0) {
                                             props.unfollow(u.id);//вызываем колбек только если успешно отписались на сервере
                                         }
+                                        props.toggleIsFollowingProgress(false, u.id);
                                     });
-
                             }}>Unfollow</button>
-                            : <button onClick={() => {
-
-                                // axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                                //     withCredentials: true,
-                                //     headers: {
-                                //         "API-KEY": "0f3afa76-4279-46a2-a53a-59a3b4453d5d"
-                                //     }
-                                // })
+                            : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                                props.toggleIsFollowingProgress(true, u.id);
                                 usersAPI.followUser(u.id)
-
                                     .then(data => {
                                         if (data.resultCode == 0) {
                                             props.follow(u.id);//вызываем колбек только если успешно подписались на сервере
                                         }
+                                        props.toggleIsFollowingProgress(false, u.id);
                                     });
-
                             }}>Follow</button>}
                     </div>
                 </span>
