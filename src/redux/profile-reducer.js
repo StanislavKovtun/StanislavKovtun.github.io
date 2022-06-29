@@ -1,3 +1,5 @@
+import { usersAPI } from "../api/api";
+
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
@@ -17,34 +19,47 @@ const profileReducer = (state = initialState, action) => {
     let stateCopy;
 
     switch (action.type) {
-    
-        case ADD_POST:{
+
+        case ADD_POST: {
             let newPost = {
                 id: 5,
                 message: state.newPostText,
                 likesCount: 12
             };
-            stateCopy = {...state,
+            stateCopy = {
+                ...state,
                 newPostText: '',
                 posts: [...state.posts, newPost]
             };
             return stateCopy;
-        }  
+        }
         case UPDATE_NEW_POST_TEXT: {
-            stateCopy = {...state,
-            newPostText: action.newText};
+            stateCopy = {
+                ...state,
+                newPostText: action.newText
+            };
             return stateCopy;
         }
         case SET_USER_PROFILE: {
-            stateCopy = {...state, profile: action.profile}
+            stateCopy = { ...state, profile: action.profile }
             return stateCopy;
         }
         default:
             return state;
-        }
+    }
 }
+
+export const getUserProfile = (userId) => { //thunk
+    return (dispatch) => {
+        usersAPI.getProfile(userId)
+            .then(data => {
+                dispatch(setUserProfile(data));
+            });
+    }
+}
+
 export default profileReducer;
 
-export const addPostActionCreator = () => ({type: ADD_POST})
-export const updateNewPostTextActionCreator = (text) =>({type: UPDATE_NEW_POST_TEXT, newText: text})
-export const setUserProfile = (profile) =>({type: SET_USER_PROFILE, profile})
+export const addPostActionCreator = () => ({ type: ADD_POST })
+export const updateNewPostTextActionCreator = (text) => ({ type: UPDATE_NEW_POST_TEXT, newText: text })
+const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })

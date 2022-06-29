@@ -3,7 +3,7 @@ import styles from './users.module.css';
 import userPhoto from '../../assets/images/user.png';
 import { NavLink } from "react-router-dom";
 // import * as axios from 'axios';
-import { usersAPI } from './../../api/api';
+// import { usersAPI } from './../../api/api';
 
 let Users = (props) => {
     // debugger;
@@ -38,26 +38,11 @@ let Users = (props) => {
                     <div>
                         {u.followed
                             ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                                debugger
-                                props.toggleIsFollowingProgress(true, u.id);
-                                usersAPI.unfollowUser(u.id)
-                                    .then(data => {
-                                        debugger
-                                        if (data.resultCode == 0) {
-                                            props.unfollow(u.id);//вызываем колбек только если успешно отписались на сервере
-                                        }
-                                        props.toggleIsFollowingProgress(false, u.id);
-                                    });
+                                props.unfollow(u.id);
                             }}>Unfollow</button>
                             : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                                props.toggleIsFollowingProgress(true, u.id);
-                                usersAPI.followUser(u.id)
-                                    .then(data => {
-                                        if (data.resultCode == 0) {
-                                            props.follow(u.id);//вызываем колбек только если успешно подписались на сервере
-                                        }
-                                        props.toggleIsFollowingProgress(false, u.id);
-                                    });
+                                props.follow(u.id);
+
                             }}>Follow</button>}
                     </div>
                 </span>
