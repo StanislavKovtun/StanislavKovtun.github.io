@@ -7,7 +7,7 @@ import {
     useNavigate,
     useParams,
 } from "react-router-dom";
-import { Navigate } from 'react-router-dom';
+import { WithAuthRedirect } from "../../hoc/withAuthRedirect";
 
 class ProfileContainer extends React.Component {
 
@@ -21,22 +21,20 @@ class ProfileContainer extends React.Component {
     }
 
     render() {
-        //редирект на страничку логин
-        if (!this.props.isAuth) return <Navigate to={"/login"} />
-        
+
         return (
             <Profile {...this.props} profile={this.props.profile} />
         )
     }
 }
 
+let AuthRedirectComponent = WithAuthRedirect(ProfileContainer);
+
 let mapStateToProps = (state) => {
     return {
-        profile: state.profilePage.profile,
-        isAuth: state.auth.isAuth
-    }
+        profile: state.profilePage.profile
+     }
 }
-
 // wrapper to use react router's v6 hooks in class component(to use HOC pattern, like in router v5)
 function withRouter(Component) {
     function ComponentWithRouterProp(props) {
@@ -54,6 +52,6 @@ function withRouter(Component) {
     return ComponentWithRouterProp;
 }
 
-let withUrlDataContainerComponent = withRouter(ProfileContainer);
+let withUrlDataContainerComponent = withRouter(AuthRedirectComponent);
 
 export default connect(mapStateToProps, { getUserProfile })(withUrlDataContainerComponent);

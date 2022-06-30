@@ -24,8 +24,8 @@ const Dialogs = (props) => {
         props.updateNewMessageBody(body);
     };
 
-    //редирект на страничку логин
-    if (!props.isAuth) return <Navigate to={"/login"}/>
+    // //редирект на страничку логин
+    // if (!props.isAuth) return <Navigate to={"/login"}/>
 
     return (
         <div className={s.dialogs}>
