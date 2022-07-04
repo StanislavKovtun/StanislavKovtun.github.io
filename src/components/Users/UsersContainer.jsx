@@ -45,16 +45,6 @@ let mapStateToProps = (state) => {
     }
 }
 
-// let withRedirect = withAuthRedirect(UsersContainer);
-
-// export default connect(mapStateToProps, {
-//     follow,
-//     unfollow,
-//     setCurrentPage,
-//     toggleIsFollowingProgress,
-//     getUsers
-// })(withRedirect);
-
 let withRedirect = withAuthRedirect(UsersContainer);
 
 export default compose(
