@@ -2,6 +2,7 @@ import React from "react";
 import s from './ProfileInfo.module.css';
 import Preloader from '../../Common/Preloader/Preloader';
 import ProfileStatus from './ProfileStatus';
+// import { updateStatus } from './../../../redux/profile-reducer';
 
 //https://images.unsplash.com/photo-1580341567260-3569b4dc537a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8aGVsbWV0fGVufDB8fDB8fA%3D%3D&w=1000&q=80
 //https://www.shoei-europe.com/wp-content/uploads/2020/09/Menue-Products-Glamster-1.png
@@ -13,7 +14,7 @@ const ProfileInfo = (props) => {
     if (!props.profile) {
         return <Preloader />
     }
-    debugger
+    // debugger
     return (
         <div>
             <div className={s.moto}>
@@ -22,7 +23,7 @@ const ProfileInfo = (props) => {
             </div>
             <div className={s.descriptionBlock}>
                 <img src={props.profile.photos.large} />
-                <ProfileStatus status={'Hi everyone!'}/>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
                 <p>ID: {props.profile.userId}</p>
                 <p>About me: {props.profile.aboutMe}</p>
                 <p>Full name: {props.profile.fullName}</p>
