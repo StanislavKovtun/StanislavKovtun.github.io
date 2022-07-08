@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import loginFormSchema from "../FormValidation/LoginFormSchema";
+import styles from "../FormValidation/FormsControls.module.css";
 
 const Login = () => (
 
@@ -28,18 +29,19 @@ const Login = () => (
                 console.log(values)
             }}
 
-            validationSchema={loginFormSchema}>
-                
+            validationSchema={loginFormSchema}
+        >
+
             {() => (
                 <Form>
                     <div>
                         <Field type={'text'} name={'email'} placeholder={'e-mail'} />
                     </div>
-                    <ErrorMessage name="email" component="div" />
+                    <ErrorMessage className={styles.errorMessage} name="email" component="div" />
                     <div>
                         <Field type={'password'} name={'password'} placeholder={'password'} />
                     </div>
-                    <ErrorMessage name="password" component="div" />
+                    <ErrorMessage className={styles.errorMessage} name="password" component="div" />
                     <div>
                         <Field type={'checkbox'} name={'rememberMe'} />
                         <label htmlFor={'rememberMe'}> remember me </label>

@@ -56,5 +56,6 @@ export default compose(
         getUsers
     }),
     withAuthRedirect
+    //withRedirect
 )(UsersContainer);
 

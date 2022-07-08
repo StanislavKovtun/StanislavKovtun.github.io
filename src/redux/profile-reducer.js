@@ -1,6 +1,5 @@
 import { profileAPI, usersAPI } from "../api/api";
 
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_STATUS = 'SET-STATUS';
@@ -11,7 +10,6 @@ let initialState = {
         { id: 2, message: 'How are you?', likesCount: 20 },
         { id: 3, message: "I'm fine, and you?", likesCount: 6 }
     ],
-    newPostText: 'new text for new post',
     profile: null,
     status: ''
 };
@@ -25,20 +23,13 @@ const profileReducer = (state = initialState, action) => {
         case ADD_POST: {
             let newPost = {
                 id: 5,
-                message: state.newPostText,
+                message: action.newPostText,//##
                 likesCount: 12
             };
             stateCopy = {
                 ...state,
                 newPostText: '',
                 posts: [...state.posts, newPost]
-            };
-            return stateCopy;
-        }
-        case UPDATE_NEW_POST_TEXT: {
-            stateCopy = {
-                ...state,
-                newPostText: action.newText
             };
             return stateCopy;
         }
@@ -79,7 +70,6 @@ export const updateStatus = (status) => { //thunk
             .then(response => {
                 if (response.data.resultCode === 0) {
                     dispatch(setStatus(status));
-                    // dispatch(setStatus(response.data.status));
                 }
             });
     }
@@ -87,7 +77,6 @@ export const updateStatus = (status) => { //thunk
 
 export default profileReducer;
 
-export const addPostActionCreator = () => ({ type: ADD_POST })
-export const updateNewPostTextActionCreator = (text) => ({ type: UPDATE_NEW_POST_TEXT, newText: text })
+export const addPostActionCreator = (newPostText) => ({ type: ADD_POST, newPostText })
 const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 const setStatus = (status) => ({ type: SET_STATUS, status })
