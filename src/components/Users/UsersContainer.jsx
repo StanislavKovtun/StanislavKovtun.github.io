@@ -45,8 +45,6 @@ let mapStateToProps = (state) => {
     }
 }
 
-let withRedirect = withAuthRedirect(UsersContainer);
-
 export default compose(
     connect(mapStateToProps, {
         follow,
@@ -56,6 +54,6 @@ export default compose(
         getUsers
     }),
     withAuthRedirect
-    //withRedirect
+
 )(UsersContainer);
 
