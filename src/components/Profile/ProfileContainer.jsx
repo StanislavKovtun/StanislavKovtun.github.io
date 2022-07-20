@@ -12,9 +12,10 @@ class ProfileContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.router.params.userId;
         if (!userId) {
-            userId = 24450;
+            //userId = 24450;
+            // debugger
+            userId = this.props.autorizedUserId;
         }
-        // debugger
         this.props.getUserProfile(userId);
         this.props.getStatus(userId);
     }
@@ -29,7 +30,9 @@ class ProfileContainer extends React.Component {
 let mapStateToProps = (state) => {
     return {
         profile: state.profilePage.profile,
-        status: state.profilePage.status
+        status: state.profilePage.status,
+        autorizedUserId: state.auth.userId,
+        isAuth: state.auth.isAuth
      }
 }
 // wrapper to use react router's v6 hooks in class component(to use HOC pattern, like in router v5)

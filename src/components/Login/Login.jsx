@@ -28,12 +28,22 @@ const Login = (props) => {
           }
           return errors;
         }}
-        onSubmit={(formData) => {
-          props.login(formData.email, formData.password, formData.rememberMe);
+        //onSubmit={(formData, { setSubmitting, setStatus }) => {//##
+        onSubmit={(formData, { setStatus }) => {
+          //##
+          props.login(
+            formData.email,
+            formData.password,
+            formData.rememberMe,
+            setStatus//##
+          );
+          //setSubmitting(false);//##
         }}
         validationSchema={loginFormSchema}
       >
-        {() => (
+        {(
+          { status } //##
+        ) => (
           <Form>
             <div>
               <Field type={"text"} name={"email"} placeholder={"e-mail"} />
@@ -55,6 +65,10 @@ const Login = (props) => {
               name="password"
               component="div"
             />
+
+            {/* //## трансляция текста ошибки из API на форму*/}
+            <div>{status && <div className="message">{status}</div>}</div>
+
             <div>
               <Field type={"checkbox"} name={"rememberMe"} />
               <label htmlFor={"rememberMe"}> remember me </label>
@@ -68,6 +82,6 @@ const Login = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
+  isAuth: state.auth.isAuth,
 });
 export default connect(mapStateToProps, { login })(Login);
