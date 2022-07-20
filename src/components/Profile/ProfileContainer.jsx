@@ -12,7 +12,7 @@ class ProfileContainer extends React.Component {
         let userId = this.props.router.params.userId;
         if (!userId) {
             //userId = 24450;
-            debugger
+            // debugger
             userId = this.props.autorizedUserId;
             // if (!userId) {
             //     debugger

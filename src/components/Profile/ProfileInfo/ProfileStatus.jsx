@@ -1,9 +1,7 @@
 import React from "react";
-import s from './ProfileInfo.module.css';
-// import { updateStatus } from './../../../redux/profile-reducer';
 
 class ProfileStatus extends React.Component {
-
+    
     state = {
         editMode: false,
         status: this.props.status
@@ -35,11 +33,6 @@ class ProfileStatus extends React.Component {
                 status: this.props.status
             });
         }
-        // console.log(prevProps);
-        // console.log(prevState);
-        // console.log(this.state);
-        // console.log(this.props);
-        // console.log('componentDidUpdate');
     }
 
     render() {
