@@ -1,6 +1,7 @@
 import { profileAPI, usersAPI } from "../api/api";
 
 const ADD_POST = 'ADD-POST';
+const DELETE_POST = 'DELETE-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_STATUS = 'SET-STATUS';
 
@@ -33,13 +34,14 @@ const profileReducer = (state = initialState, action) => {
             };
             return stateCopy;
         }
+        case DELETE_POST: {
+            return {...state, posts: state.posts.filter(p => p.id !== action.postId)};
+        }
         case SET_USER_PROFILE: {
-            stateCopy = { ...state, profile: action.profile }
-            return stateCopy;
+            return { ...state, profile: action.profile };
         }
         case SET_STATUS: {
-            stateCopy = { ...state, status: action.status }
-            return stateCopy;
+            return { ...state, status: action.status }
         }
         default:
             return state;
@@ -78,5 +80,6 @@ export const updateStatus = (status) => { //thunk
 export default profileReducer;
 
 export const addPostActionCreator = (newPostText) => ({ type: ADD_POST, newPostText })
+export const deletePost = (postId) => ({ type: DELETE_POST, postId })
 const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 const setStatus = (status) => ({ type: SET_STATUS, status })
