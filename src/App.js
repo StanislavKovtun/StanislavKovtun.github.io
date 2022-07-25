@@ -31,6 +31,7 @@ class App extends React.Component {
 
     return (
       <div className="app-wrapper">
+        <div>Jest test</div>
         <HeaderContainer />
         <Navbar />
         <div className="app-wrapper-content">
