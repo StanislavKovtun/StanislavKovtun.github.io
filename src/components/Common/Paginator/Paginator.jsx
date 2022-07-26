@@ -11,7 +11,7 @@ let Paginator = (props) => {
 
   let curP = props.currentPage;
   let curPF = curP - 10 < 0 ? 0 : curP - 10;
-  let curPL = curP - 10 < 0 ? curP + 9 : curP + 10;
+  let curPL = curP - 10 < 0 ? props.pageSize * 2 : curP + 10;
   let slicedPages = pages.slice(curPF, curPL);
   return (
     <div className={styles.paginator}>
@@ -19,7 +19,7 @@ let Paginator = (props) => {
         return (
           <span
             key={p}
-            className={props.currentPage === p ? styles.selectedPage : ""}
+            className={props.currentPage === p ? styles.selectedPage : styles.ollPages}
             onClick={(e) => {
               props.onPageChanged(p);
             }}

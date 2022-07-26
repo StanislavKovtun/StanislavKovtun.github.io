@@ -1,10 +1,18 @@
-.selectedPage {
-    /* display:block; */
-    font-weight: bold;
-    width: 20px;
+.paginator {
+    margin: 10px;
 }
 
 .ollPages {
-    /* display:block; */
-    width: 20px;
+    padding: 2px;
+    border: 1px solid grey;
+}
+
+.ollPages:hover {
+    font-weight: bold;
+}
+
+.selectedPage {
+    padding: 2px;
+    border: 1px solid grey;
+    font-weight: bold;
 }
