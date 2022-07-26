@@ -1,3 +1,10 @@
 .selectedPage {
+    /* display:block; */
     font-weight: bold;
+    width: 20px;
+}
+
+.ollPages {
+    /* display:block; */
+    width: 20px;
 }
