@@ -10,13 +10,19 @@ import userPhoto from "../../../assets/images/user.png";
 //https://www.shoei-europe.com/wp-content/uploads/2020/09/Menue-Products-Glamster-1.png
 //https://lightningmotorcycle.com/wp-content/uploads/2019/09/strike_banner.jpg
 
-const ProfileInfo = (props) => {
-
+const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}) => {
+    
     // if (props.profile == null || props.profile == undefined)
-    if (!props.profile) {
+    if (!profile) {
         return <Preloader />
     }
-    // debugger
+    
+    const onMainPhotoSelected = (e) => {
+        if (e.target.files.length) {
+            savePhoto(e.target.files[0]);
+        }
+    }
+
     return (
         <div>
             <div className={s.moto}>
@@ -25,13 +31,18 @@ const ProfileInfo = (props) => {
             </div>
             <div className={s.descriptionBlock}>
                 {/* <img src={props.profile.photos.large}/> */}
-                <img src={props.profile.photos.large !== null ? props.profile.photos.large : userPhoto} alt="userPhoto"/>
+                <img className={s.mainPhoto} src={profile.photos.large !== null ? profile.photos.large : userPhoto} alt="userPhoto"/>
+                {isOwner && 
+                <div>
+                    <input type={"file"} onChange={onMainPhotoSelected}/>
+                </div>
+                }
                 {/* <ProfileStatus status={props.status} updateStatus={props.updateStatus}/> */}
-                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
-                <p>ID: {props.profile.userId}</p>
-                <p>About me: {props.profile.aboutMe}</p>
-                <p>Full name: {props.profile.fullName}</p>
-                <p>Status: {props.profile.lookingForAJobDescription}</p>
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
+                <p>ID: {profile.userId}</p>
+                <p>About me: {profile.aboutMe}</p>
+                <p>Full name: {profile.fullName}</p>
+                <p>Status: {profile.lookingForAJobDescription}</p>
             </div>
         </div>
     );
