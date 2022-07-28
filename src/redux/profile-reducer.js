@@ -81,6 +81,37 @@ export const savePhoto = (file) => async (dispatch) => {
   }
 };
 
+// //thunk
+// export const saveProfile = (profile) => async (dispatch) => {
+//   let response = await profileAPI.saveProfile(profile);
+//   if (response.data.resultCode === 0) {
+//     // dispatch(savePhotoSuccess(response.data.data.photos));
+//   }
+// };
+
+//thunk
+export const saveProfile = (formData, setStatus, setSubmitting, goToViewMode) => async (dispatch, getState) => {
+  
+  // const userId2 = getState().auth.userId;
+  // debugger
+  const response = await profileAPI.saveProfile( formData );
+  
+  let resultCode = response.data.resultCode;
+
+  if (resultCode === 0) {
+    debugger
+     const userId = getState().auth.userId;
+     goToViewMode();
+     dispatch( getUserProfile( userId ) );
+  } else {
+
+     let textError = `resultCode: ${resultCode} - ${response.data.messages.join(', ')}`;
+     setStatus( textError );
+     setSubmitting( false );
+  }
+
+};
+  
 export default profileReducer;
 
 export const addPostActionCreator = (newPostText) => ({

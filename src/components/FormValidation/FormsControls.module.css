@@ -1,8 +1,11 @@
-.fieldError {
-    /* border: solid red 2px; */
-}
-
 .errorMessage {
     color: red;
     font-size: 12px;
 }
+
+.validationErrorMessage {
+    color: rgb(236, 114, 114);
+    /*border: red solid 2px;*/
+    /*padding: 1px;*/
+    /*margin: 10px;*/
+ }
