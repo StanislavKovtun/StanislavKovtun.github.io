@@ -35,6 +35,7 @@ const Login = (props) => {
             formData.email,
             formData.password,
             formData.rememberMe,
+            formData.captcha,
             setStatus//##
           );
           //setSubmitting(false);//##
@@ -65,6 +66,25 @@ const Login = (props) => {
               name="password"
               component="div"
             />
+            {console.log('form capcha')}
+            {/* {props.captchaUrl && <img src={props.captchaUrl} alt="captchaImg" />} */}
+
+            {status && props.captchaUrl &&
+              <div>
+
+                <div>
+                  <img src={props.captchaUrl} alt={status} />
+                </div>
+
+                <div>
+                  <Field
+                    name={'captcha'}
+                    type={'text'} />
+                </div>
+
+              </div>
+
+            }
 
             {/* //## трансляция текста ошибки из API на форму*/}
             <div>{status && <div className="message">{status}</div>}</div>
@@ -83,5 +103,7 @@ const Login = (props) => {
 
 const mapStateToProps = (state) => ({
   isAuth: state.auth.isAuth,
+  captchaUrl: state.auth.captchaUrl
 });
+
 export default connect(mapStateToProps, { login })(Login);
