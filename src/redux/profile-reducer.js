@@ -46,7 +46,7 @@ const profileReducer = (state = initialState, action) => {
       return { ...state, status: action.status };
     }
     case SAVE_PHOTO_SUCCESS: {
-      return { ...state, profile: {...state.profile, photos: action.photos} };
+      return { ...state, profile: { ...state.profile, photos: action.photos } };
     }
     default:
       return state;
@@ -67,9 +67,13 @@ export const getStatus = (userId) => async (dispatch) => {
 
 //thunk
 export const updateStatus = (status) => async (dispatch) => {
-  let response = await profileAPI.updateStatus(status);
-  if (response.data.resultCode === 0) {
-    dispatch(setStatus(status));
+  try {
+    let response = await profileAPI.updateStatus(status);
+    if (response.data.resultCode === 0) {
+      dispatch(setStatus(status));
+    }
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -91,27 +95,27 @@ export const savePhoto = (file) => async (dispatch) => {
 
 //thunk
 export const saveProfile = (formData, setStatus, setSubmitting, goToViewMode) => async (dispatch, getState) => {
-  
+
   // const userId2 = getState().auth.userId;
   // debugger
-  const response = await profileAPI.saveProfile( formData );
-  
+  const response = await profileAPI.saveProfile(formData);
+
   let resultCode = response.data.resultCode;
 
   if (resultCode === 0) {
     debugger
-     const userId = getState().auth.userId;
-     goToViewMode();
-     dispatch( getUserProfile( userId ) );
+    const userId = getState().auth.userId;
+    goToViewMode();
+    dispatch(getUserProfile(userId));
   } else {
 
-     let textError = `resultCode: ${resultCode} - ${response.data.messages.join(', ')}`;
-     setStatus( textError );
-     setSubmitting( false );
+    let textError = `resultCode: ${resultCode} - ${response.data.messages.join(', ')}`;
+    setStatus(textError);
+    setSubmitting(false);
   }
 
 };
-  
+
 export default profileReducer;
 
 export const addPostActionCreator = (newPostText) => ({
