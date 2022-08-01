@@ -36,12 +36,21 @@ export const getCaptchaUrlSuccess = (captchaUrl) => ({
 
 //thunk
 export const getAuthUserData = () => async (dispatch) => {
-  // console.log("getAuthUserData");
   let response = await authAPI.me();
   if (response.data.resultCode === 0) {
     let { id, login, email } = response.data.data;
     dispatch(setAuthUserData(id, login, email, true));
   }
+  // try {
+  //   let response = await authAPI.me();
+  //   if (response.data.resultCode === 0) {
+  //     let { id, login, email } = response.data.data;
+  //     dispatch(setAuthUserData(id, login, email, true));
+  //   }
+  // } catch (error) {
+  //   console.log(error.response.status);
+  //   console.log(error);
+  // }
 };
 
 //thunk

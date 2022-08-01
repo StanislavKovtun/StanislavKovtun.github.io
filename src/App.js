@@ -11,6 +11,7 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import { connect } from "react-redux";
 import { initializeApp } from "./redux/app-reducer";
 import Preloader from "./components/Common/Preloader/Preloader";
+import NotFound from "./components/Common/NotFound";
 
 // import DialogsContainer from "./components/Dialogs/DialogsContainer";
 const DialogsContainer = React.lazy(() =>
@@ -54,6 +55,7 @@ class App extends React.Component {
               <Route path="/news" element={<News />} />
               <Route path="/music" element={<Music />} />
               <Route path="/settings" element={<Settings />} />
+              <Route path='*' element={<NotFound />} />
             </Routes>
           </Suspense>
         </div>

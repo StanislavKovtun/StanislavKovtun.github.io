@@ -28,7 +28,7 @@ let contactsJsx = (name) => {
     return (
         <div key={name} className={Style.contact}>
             <div className={Style.contactItem}>
-                <b>{name}</b>:
+                <b className={Style.contactItemName}>{name}:</b>
                 <Field
                     name={`contacts.${name}`}
                     type={'text'}
@@ -71,9 +71,8 @@ const ProfileDataForm = (props) => {
 
                     return (
                         <Form>
-                            {/* <br /> */}
-                            <div className={Style.contactItem}>
-                                <b className={Style.contactItemName}>Full name: </b>
+                            <div>
+                                <b>Full name: </b>
                                 <Field
                                     name={'fullName'}
                                     type={'text'}
@@ -84,8 +83,7 @@ const ProfileDataForm = (props) => {
                                 {ErrorMessageWrapper}
                             </ErrorMessage>
 
-
-                            <div className={Style.contactItem}>
+                            <div>
                                 <Field
                                     name={'lookingForAJob'}
                                     type={'checkbox'}
@@ -94,8 +92,8 @@ const ProfileDataForm = (props) => {
                                     <b> Looking for a job</b> </label>
                             </div>
 
-                            <div className={Style.contactItem}>
-                                <b className={Style.contactItemName}>Looking for a job description:</b>
+                            <div>
+                                <b>Looking for a job description:</b>
                                 <div>
                                     <Field
                                         name={'lookingForAJobDescription'}
@@ -108,8 +106,8 @@ const ProfileDataForm = (props) => {
                                 {ErrorMessageWrapper}
                             </ErrorMessage>
 
-                            <div className={Style.contactItem}>
-                                <b className={Style.contactItemName}>About me: </b>
+                            <div>
+                                <b>About me: </b>
                                 <div>
                                     <Field
                                         name={'aboutMe'}
